@@ -8,13 +8,14 @@ public:
             n=abs(n);
             x=1/x;
         }
-                //myPow(x,n/2);
-        // ans=(ans*ans);
+        
+        double ans= myPow(x,n/2);
+        ans=(ans*ans);
         if(n%2==0){
-            return myPow(x*x,n/2);
+            return ans;
         }
         else {
-            return x*myPow(x*x,n/2);
+            return x*ans;
         }
     }
 };
