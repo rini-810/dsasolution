@@ -1,19 +1,24 @@
 class Solution {
 public:
-    bool validPalindrome(string s) {
-        return check(0,s.size()-1,s,0);
+     bool ispalindrome(string s, int i, int j){
+        while(i < j){
+            if(s.at(i) == s.at(j)){
+                i++;
+                j--;
+            }else return false;
+        }
+        return true;
     }
-    bool check(int lo,int hi,string s,int count){
-        if(count>1)
-            return false;
-        while(lo<hi){
-        if(s[lo]==s[hi]){
-            lo++;
-            hi--;
-        }
-        else{
-            return check(lo+1,hi,s,count+1) || check(lo,hi-1,s,count+1);
-        }
+    bool validPalindrome(string s) {
+        int i  = 0;
+        int j = s.size()-1;
+        while(i < j){
+            if(s.at(i) == s.at(j)){
+                i++;
+                j--;
+            }else{
+                return ispalindrome(s, i+1, j) || ispalindrome(s, i, j-1);
+            }
         }
         return true;
     }
