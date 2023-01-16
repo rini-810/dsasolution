@@ -10,26 +10,7 @@
  */
 class Solution {
 public:
-    int getDecimalValue(ListNode* head) {
-        string binary;
-        // if(head->next==NULL)
-        //     return head->val;
-        while(head!=NULL){
-            binary +=to_string(head->val);
-            head=head->next;
-        }
-        return binarytodecimal(binary);
-    }
-    
-    int binarytodecimal(string binary){
-        int ans=0;
-        int base=1;
-        for(int i=binary.size()-1;i>=0;i--){
-            if(binary[i]=='1'){
-                ans +=base;
-            }
-            base=base*2;
-        }
-        return ans;
+    int getDecimalValue(ListNode* head,int ans=0) {
+        return head ? getDecimalValue(head->next,ans*2+head->val) : ans;
     }
 };
