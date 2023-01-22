@@ -12,24 +12,22 @@ public:
         
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                
-                 if(i==0 && j!=0){
-                     cout<<grid[i][j]<<"->"<<i<<j<<endl;
+                if(i==0 && j==0)
+                    continue;
+                 else if(i==0 && j!=0){
+                     
                     grid[i][j] += grid[i][j-1];
-                    cout<<" "<<i<<j-1<<endl;
-                    cout<<grid[i][j]<<" "<<i<<j<<endl;
+                   
                 }
                 else if(j==0 && i){
-                    cout<<grid[i][j]<<"->"<<i<<j<<endl;
+                    
                     grid[i][j] += grid[i-1][j];
-                    cout<<" "<<i-1<<j<<endl;
-                    cout<<grid[i][j]<<" "<<i<<j<<endl;
+                    
                 }
-                else if(i==0 && j==0)
-                    continue;
+                 
                 else
                 grid[i][j] = min(grid[i][j]+grid[i-1][j], grid[i][j]+grid[i][j-1]);
-                 cout<<grid[i][j]<<" "<<i<<j<<endl;
+                 
             }
         }
         return grid[m-1][n-1];
