@@ -1,32 +1,21 @@
 class Solution {
-    bool areVectorsEqual(vector<int> a, vector<int> b){
-        for(int i=0; i<26; i++){
-            if(a[i]!=b[i]) return false;
-        }
-        return true;
-    }
 public:
     bool checkInclusion(string s1, string s2) {
-        if(s2.size()<s1.size()) return false;
-        vector<int> freqS1(26, 0);
-        for(char c: s1) freqS1[c-'a']++;
-        
-        vector<int> freqS2(26, 0);
-        int i=0, j=0;
-        
-        while(j<s2.size()){
-            freqS2[s2[j]-'a']++;
-            
-            if(j-i+1==s1.size()){
-                if(areVectorsEqual(freqS1, freqS2)) return true;
-            }
-            
-            if(j-i+1<s1.size()) j++;
-            else{
-                freqS2[s2[i]-'a']--;
-                i++;
-                j++;
-            }
+        unordered_map<char,int> mp,window;
+        int n1 = s1.size(),n2 = s2.size();
+        if(n1>n2) return false;
+        for(int i=0; i<n1 ; i++){
+            mp[s1[i]]++;
+            window[s2[i]]++;
+        }
+        if(window == mp)return true;
+        int k=0;
+        for(int i=n1 ; i<n2 ; i++){
+           if(window[s2[k]] == 1) window.erase(s2[k]);
+            else window[s2[k]]--;
+            window[s2[i]]++;
+            k++;
+            if(mp == window) return true;
         }
         return false;
     }
