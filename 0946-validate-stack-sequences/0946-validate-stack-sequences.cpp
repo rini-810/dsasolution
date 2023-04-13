@@ -1,30 +1,17 @@
 class Solution {
 public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
-        stack<int> s;
-        //s.push(pushed[0]);
-        int i=0,j=0;
-        while(i<pushed.size() && j<popped.size()){
-            if(s.empty()){
-                s.push(pushed[i]);
-                i++;
-            }
-            else if(s.top()==popped[j]){
-                s.pop();
-                j++;
-            }
-            else{
-                s.push(pushed[i]);
-                i++;
-            }
-        }
-        while(!s.empty()){
-            if(s.top()!=popped[j])
-                return false;
-            s.pop();
-            j++;
-        }
+        stack<int> st; // Create a stack
         
-        return true;
+        int j = 0; // Intialise one pointer pointing on popped array
+        
+        for(auto val : pushed){
+            st.push(val); // insert the values in stack
+            while(st.size() > 0 && st.top() == popped[j]){ // if st.peek() values equal to popped[j];
+                st.pop(); // then pop out
+                j++; // increment j
+            }
+        }
+        return st.size() == 0; // check if stack is empty return true else false
     }
 };
