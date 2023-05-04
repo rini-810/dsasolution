@@ -15,7 +15,7 @@ public:
                     temp.push_back(s+x);
                 }
             }
-            swap(result,temp);
+            result.swap(temp);
         }
         
         return result;
