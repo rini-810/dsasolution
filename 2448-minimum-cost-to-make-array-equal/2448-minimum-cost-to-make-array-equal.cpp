@@ -30,7 +30,7 @@ public:
         long long median;
         int i=0;
 
-        while(tot < (sum+1)/2 && i<n){
+        while(tot < (sum+1)/2){
 
              tot += 1ll*vec[i].second;
              median = vec[i].first;
